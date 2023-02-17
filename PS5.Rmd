@@ -1,0 +1,13 @@
+---
+title: 'PS5: gapminder'
+author: "Kristine"
+date: "2023-02-16"
+output: html_document
+---
+1. Load and check data:
+```{r setup, include=FALSE}
+library(tidyverse)
+```
+```{r message=FALSE}
+gm <- read_delim("gapminder.csv")
+```
