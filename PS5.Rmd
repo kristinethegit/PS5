@@ -5,9 +5,16 @@ date: "2023-02-16"
 output: html_document
 ---
 1. Load and check data:
-```{r setup, include=FALSE}
+```{r setup, message=FALSE}
 library(tidyverse)
 ```
-```{r message=FALSE}
-gm <- read_delim("gapminder.csv")
+2. Load data. How many rows/columns do we have?
+```{r, message=FALSE}
+gm <- read_delim("~/info201/PS5/gapminder.csv")
+gm
+```
+3. Print a small sample of data. Does it look OK?
+```{r, message=FALSE}
+gm %>%
+  sample_n(10)
 ```
