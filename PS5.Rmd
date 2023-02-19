@@ -4,17 +4,45 @@ author: "Kristine"
 date: "2023-02-16"
 output: html_document
 ---
+# 1 Load and check data
 1. Load and check data:
 ```{r setup, message=FALSE}
 library(tidyverse)
 ```
-2. Load data. How many rows/columns do we have?
+2. How many rows/columns do we have?
 ```{r, message=FALSE}
 gm <- read_delim("~/info201/PS5/gapminder.csv")
 gm
 ```
+There are 13,055 rows and 25 columns.
+
 3. Print a small sample of data. Does it look OK?
 ```{r, message=FALSE}
 gm %>%
   sample_n(10)
 ```
+Data looks good.
+
+# 2 Descriptive statistics
+
+1. How many countries are there in the dataset? Analyze all three: iso3, iso2 and name.
+```{r}
+gm %>%
+  distinct(gm$name)%>% 
+  count()
+```
+```{r}
+gm %>% 
+  distinct(gm$iso2) %>% 
+  count()
+```
+```{r}
+gm %>% 
+  distinct(gm$iso3) %>% 
+  count()
+```
+
+
+There are 250 countries in gapminders.
+
+2. 
