@@ -79,7 +79,6 @@ There are 4 countries that have more than one iso-3 code.
 ```{r, message=FALSE}
 min_year <- min(gm$time)
 max_year <- max(gm$time)
-
 cat("The minimum year in the dataset is", min_year, "and the maximum year is", max_year, ".")
 ```
 
@@ -108,9 +107,7 @@ more countries of your choice. Explain what do you see.
 countries <- c("United States", "China", "India", "Germany", "Japan")
 co2_emissions <- gm %>%
   filter(region %in% countries)
-
 co2_emissions$time <- as.numeric(co2_emissions$time)
-
 ggplot(co2_emissions, aes(x = time, y = co2_emissions)) +
   geom_line(y = 1, x = 1)
   labs(title = "Total CO2 Emissions over Time",
@@ -133,7 +130,6 @@ avg_co2 <- gm %>%
   filter(!is.na(region), time %in% c("1960", "2016")) %>% 
   group_by(region, time) %>% 
   summarize(avg_co2_PC = mean(co2_PC, na.rm = TRUE))
-
 ggplot(avg_co2, aes(region, avg_co2_PC, fill=factor(time))) +
   geom_col(position = "dodge") +
   labs(title = "Average CO2 per Capita for Regions (Continents)",
@@ -149,7 +145,6 @@ avg_co2 <- gm %>%
   filter(!is.na(region), time %in% c("1960", "2016")) %>% 
   group_by(region, time) %>% 
   summarize(avg_co2_PC = mean(co2_PC, na.rm = TRUE))
-
 ggplot(avg_co2, aes(region, avg_co2_PC, fill=factor(time))) +
   geom_col(position = "dodge") +
   labs(title = "Average CO2 per Capita for Regions (Continents)",
@@ -201,7 +196,6 @@ gdp_PC <- gm %>%
   group_by(name) %>% 
   select(region, GDP_PC, lifeExpectancy, totalPopulation, time) %>% 
   filter(time == "1960")
-
 ggplot(gdp_PC, aes(x = GDP_PC, y = lifeExpectancy, col = factor(region))) +
   geom_point(aes(size = totalPopulation / 1000000),
              alpha = 0.8) +
@@ -221,7 +215,6 @@ gdp_PC <- gm %>%
   group_by(name) %>% 
   select(region, GDP_PC, lifeExpectancy, totalPopulation, time) %>% 
   filter(time == "2019")
-
 ggplot(gdp_PC, aes(x = GDP_PC, y = lifeExpectancy, col = factor(region))) +
   geom_point(aes(size = totalPopulation / 1000000))
 ```
@@ -269,7 +262,6 @@ avg_LE <- gm %>%
   mutate(avg_growth = lifeExpectancy - prev.val) %>% 
   summarize(avg_growth = mean(avg_growth, na.rm = TRUE)) %>% 
   arrange(desc(avg_growth))
-
 ```
 
 6. Show the histogram of GDP per capita for years of 1960 and 2019. Try to put both
@@ -286,7 +278,6 @@ ranks_per_year <- gm %>%
   arrange(time, desc(lifeExpectancy)) %>% 
   group_by(time) %>% 
   mutate(rankings = rank(desc(lifeExpectancy)))
-
 ranks_per_year %>% 
   filter(name == "United States of America")
 ```
